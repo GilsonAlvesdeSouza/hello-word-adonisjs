@@ -7,7 +7,7 @@ Route.group(() => {
     Route.get("/", "PainelController.index").as("painel");
     Route.get("/usuarios/:id?", "PainelController.usuarios")
       .where("id", Route.matchers.number())
-      .as("painel-usuario-id");
+      .as("painel-usuario");
     Route.get("/usuarios/:slug", "PainelController.usuarioBySlug")
       .where("slug", /[a-z_-]+$/)
       .as("painel-usuario-slug");

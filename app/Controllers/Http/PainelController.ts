@@ -1,5 +1,4 @@
 // import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-
 export default class PainelController {
   protected users = [
     { id: 1, slug: "mancha", name: "Gilson Alves" },
@@ -9,8 +8,10 @@ export default class PainelController {
     { id: 5, slug: "desconhecido", name: "Ercy Pereira da Silva Souza" },
   ];
 
-  async index() {
-    return { response: "Index do painel" };
+  async index({ response }) {
+    const json = { hello: "world", foo: "bar" };
+    // response.status(200).send(json);
+    response.redirect().toPath("/api/painel/usuarios/");
   }
 
   async usuarios({ params }) {
