@@ -5,12 +5,12 @@ Route.group(() => {
 
   Route.group(() => {
     Route.get("/", "PainelController.index").as("painel");
-    Route.get("/usuarios", "PainelController.usuarios").as("painel-usuarios");
-    Route.get("/usuarios/:id", "PainelController.usuarioById")
+    Route.get("/usuarios/:id?", "PainelController.usuarios")
       .where("id", Route.matchers.number())
       .as("painel-usuario-id");
     Route.get("/usuarios/:slug", "PainelController.usuarioBySlug")
       .where("slug", /[a-z_-]+$/)
       .as("painel-usuario-slug");
+    Route.get("/docs/*", "PainelController.docs").as("painel-docs");
   }).prefix("/painel");
 }).prefix("/api");

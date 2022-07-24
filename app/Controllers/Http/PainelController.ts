@@ -13,11 +13,10 @@ export default class PainelController {
     return { response: "Index do painel" };
   }
 
-  async usuarios() {
-    return { users: this.users };
-  }
-
-  async usuarioById({ params }) {
+  async usuarios({ params }) {
+    if (!params["id"]) {
+      return { users: this.users };
+    }
     const id = params["id"];
     const user = this.users.find((user) => user.id == id);
     return user ? user : { error: "Nenhum Usuário encontrado!" };
@@ -27,6 +26,11 @@ export default class PainelController {
     const slug = params["slug"];
     const user = this.users.find((user) => user.slug == slug);
     return user ? user : { error: "Nenhum Usuário encontrado!" };
+  }
+
+  async docs({ params }) {
+    return params; //lista todos
+    // return params[*][0] //lista apenas um de cada vez
   }
 
   async admin() {
